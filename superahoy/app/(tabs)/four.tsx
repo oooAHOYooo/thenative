@@ -1,49 +1,85 @@
 import { StyleSheet } from 'react-native';
+import SoundPlayer from 'react-native-sound-player';
+import songCollection from '../../data/songCollection.json';
+import { FlatList, TouchableOpacity } from 'react-native';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
+import React, { useState } from 'react';
 
 export default function TabFourScreen() {
-    const data = [
-        { key: '1', artist: 'Artist 1' },
-        { key: '2', artist: 'Artist 2' },
-        // Add more data here
-      ];
+    const [currentSong, setCurrentSong] = useState(null);
+
+    const playSong = (song) => {
+      if (currentSong) {
+        SoundPlayer.stop();
+      }
+      try {
+        SoundPlayer.playUrl(song.mp3url);
+        setCurrentSong(song);
+      } catch (e) {
+        console.log(`cannot play the sound file`, e);
+      }
+    };
+  
+    const renderItem = ({ item }) => (
+      <View style={styles.row}>
+        <Text style={styles.title}>{item.songTitle}</Text>
+        <Text style={styles.artist}>{item.artist}</Text>
+        <TouchableOpacity onPress={() => playSong(item)}>
+          <Text style={styles.playButton}>Play</Text>
+        </TouchableOpacity>
+      </View>
+    );
   
     return (
-    <View style={styles.container}>
-      <Text style={styles.title}>List of Podcasts</Text>
-      <Text>This is where we are going to have a table</Text>
-      <Text>Artist Name</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Songs</Text>
+        <FlatList
+          data={songCollection.songs}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      </View>
+    );
+  }
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'rgb(0, 14, 19)', // Dark theme background color
 
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: 'left',
+      color: '#00f2ff', // Dark theme text color
 
+    },
+    artist: {
+      fontSize: 16,
+      textAlign: 'left',
+      color: '#00f2ff', // Dark theme text color
 
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 10,
+    },
+    playButton: {
+      
+      color: '#ffd900', // Gold color
 
-
-
-
-
-
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+    },
+    separator: {
+      marginVertical: 30,
+      height: 1,
+      width: '80%',
+    },
+  });
