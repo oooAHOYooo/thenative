@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "superahoy",
-    "slug": "superahoy",
+    "slug": "ahoy-indie-media",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alexfromahoy.ahoyindiemedia"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +35,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7a693abd-5369-4aaf-a480-baef5d823ee8"
+      }
+    },
+    "owner": "alexfromahoy"
   }
 }

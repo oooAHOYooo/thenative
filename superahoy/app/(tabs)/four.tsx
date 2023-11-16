@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 import SoundPlayer from 'react-native-sound-player';
 import songCollection from '../../data/songCollection.json';
 import { FlatList, TouchableOpacity } from 'react-native';
-import { Player, MediaStates } from 'react-native-audio-toolkit';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
