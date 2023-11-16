@@ -8,7 +8,7 @@ import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 import React, { useState } from 'react';
 
-export default function TabFourScreen() {
+export default function TabArtistScreen() {
     const [currentSong, setCurrentSong] = useState(null);
 
     const playSong = (song) => {

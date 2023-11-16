@@ -4,7 +4,9 @@ import { Pressable, useColorScheme } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
+
 import TabThreeScreen from './three';
+import TabArtistScreen from './four'; // Import the TabArtistScreen
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -27,7 +29,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Now Playing',
+          title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -52,7 +54,22 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+            <Tabs.Screen
+        name="three"
+        options={{
+          title: 'Artists',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+                  <Tabs.Screen
+        name="four"
+        options={{
+          title: 'Songs',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
     </Tabs>
+    
 
 
   );
