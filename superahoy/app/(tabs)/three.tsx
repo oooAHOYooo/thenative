@@ -3,15 +3,27 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
-export default function TabTwoScreen() {
+import React from 'react';
+import { FlatList, Image } from 'react-native';
+import artistData from '../../data/artistCollection.json'; 
+
+
+export default function TabThreeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>List of Songs</Text>
-      <Text>This is where the Song Title Will Dynamically Generate</Text>
-      <Text>Artist Name</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+    <Text style={styles.title}>List of Artists</Text>
+    <FlatList
+      data={artistData.artists}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.itemContainer}>
+      
+          <Text style={styles.artistName}>{item.name}</Text>
+          {/* Add other details you want to show */}
+        </View>
+      )}
+    />
+  </View>
   );
 }
 
