@@ -30,16 +30,27 @@ export default function TabThreeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
+    backgroundColor: 'rgb(0, 14, 19)',
+    maxWidth: 600,
+    alignSelf: 'center',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#00f2ff',
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
+    backgroundColor: '#00e5ff',
   },
+  artistName: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#00f2ff',
+  },
+  // Add other styles as needed
 });

@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 import SoundPlayer from 'react-native-sound-player';
 import songCollection from '../../data/songCollection.json';
 import { FlatList, TouchableOpacity } from 'react-native';
+import { Player, MediaStates } from 'react-native-audio-toolkit';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
@@ -11,16 +12,18 @@ export default function TabFourScreen() {
     const [currentSong, setCurrentSong] = useState(null);
 
     const playSong = (song) => {
-      if (currentSong) {
-        SoundPlayer.stop();
-      }
-      try {
-        SoundPlayer.playUrl(song.mp3url);
-        setCurrentSong(song);
-      } catch (e) {
-        console.log(`cannot play the sound file`, e);
-      }
-    };
+        console.log('Attempting to play song:', song);
+        if (currentSong) {
+          SoundPlayer.stop();
+        }
+        try {
+          console.log('Playing URL:', song.mp3url);
+          SoundPlayer.playUrl(song.mp3url);
+          setCurrentSong(song);
+        } catch (e) {
+          console.log(`Cannot play the sound file`, e);
+        }
+      };
   
     const renderItem = ({ item }) => (
       <View style={styles.row}>
@@ -32,6 +35,12 @@ export default function TabFourScreen() {
       </View>
     );
   
+
+
+
+
+
+    
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Songs</Text>
